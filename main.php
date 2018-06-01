@@ -8,10 +8,22 @@ Plugin Name: TA YourIP
 Plugin URI: https://github.com/Byggvir/tawp_yourip/archive/master.zip
 Description: This plugin displays the IP address of the caller.
 Author: Thomas Arend
-Version: 0.1
+Version: 0.1.1
 Author URI: http://byggvir.de/
 */
 
+function getaddrtype($addrtype) {
+	
+    if (  !  empty($_SERVER[$addrtype] )  ) {
+        // Return Clients IP Address
+        return $_SERVER[$addrtype] ;
+    } 
+	else {
+		return "-";
+	}
+
+}
+	
 function yourip($atts) {
 
     extract(
@@ -22,29 +34,12 @@ function yourip($atts) {
             $atts
         )
     );
-
-    $ip = ""
-    
-    if ( ! empty($_SERVER['HTTP_CLIENT_IP']) ) {
-
-        // Return Clients IP Address
-        $ip = "Client: $_SERVER['HTTP_CLIENT_IP']";
-
-    } 
-    
-    if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-
-        //check ip from proxy
-        $ip = $ip + "; Forwarded for $_SERVER['HTTP_X_FORWARDED_FOR']";
-
-    }
-
-    if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-        
-        // Remote address
-        $ip = $ip + "; Romote Address: $_SERVER['REMOTE_ADDR']";
-
-	}
+   
+	$ClAddr = getaddrtype('HTTP_CLIENT_IP');
+	$RmAddr = getaddrtype('REMOTE_ADDR');
+	$XfAddr = getaddrtype('HTTP_X_FORWARDED_FOR');
+	
+	$ip = "<div class=\"tawp_yourip\">Client: $ClAddr;<br /> Remote: $RmAddr; <br />Forwarded for: $XfAddr;<br /></div>";
 
 	return apply_filters( 'wpb_get_ip', $ip );
      
