@@ -1,7 +1,7 @@
 <?php
 /**
  * @package TA_YourIP
- * @version 0.1
+ * @version 0.1.1
  */
 /*
 Plugin Name: TA YourIP
@@ -31,19 +31,21 @@ function yourip($atts) {
     extract(
         shortcode_atts(
             array(
-                'datum' => 'now',
+                'client' => 'yes',
+                'remote' => 'yes',
+                'forward' => 'yes',
             ),
             $atts
         )
     );
-   
+
 	$ClAddr = getaddrtype('HTTP_CLIENT_IP');
 	$RmAddr = getaddrtype('REMOTE_ADDR');
 	$XfAddr = getaddrtype('HTTP_X_FORWARDED_FOR');
 	
-	$ip = "<div class=\"tawp_yourip\">Client: $ClAddr;<br /> Remote: $RmAddr; <br />Forwarded for: $XfAddr;<br /></div>";
+	$ip = "<div class=\"tawp_yourip\">Client: $ClAddr;<br /> Remote: $RmAddr; <br />Forwarded for: $XfAddr;</div>";
 
-	return apply_filters( 'wpb_get_ip', $ip );
+	return $ip;
      
 }
 
