@@ -1,0 +1,13 @@
+@charset UTF-8;
+/*
+Styles for Plugin TAWP Your IP 
+
+Author: Thomas Arend
+Date: 01.06.2018
+Version 0.1.1
+*/
+.tawp_yourip {
+  color: blue ;
+  font-weight: bold;
+}
+

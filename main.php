@@ -12,6 +12,8 @@ Version: 0.1.1
 Author URI: http://byggvir.de/
 */
 
+define( "UIP", 'UIP_' );
+
 function getaddrtype($addrtype) {
 	
     if (  !  empty($_SERVER[$addrtype] )  ) {
@@ -44,6 +46,16 @@ function yourip($atts) {
 	return apply_filters( 'wpb_get_ip', $ip );
      
 }
+
+function add_uip_stylesheet( )
+ {
+  wp_register_style( UIP . 'StyleSheets', plugins_url( 'css/styles.css', __FILE__ ) );
+  wp_enqueue_style( UIP . 'StyleSheets' );
+ }
+
+// Add the EVTStyleSheets
+
+add_action( 'wp_print_styles', 'add_uip_stylesheet' );
 
 // Add the shortcode
 
