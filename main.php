@@ -1,14 +1,14 @@
 <?php
 /**
  * @package TA_YourIP
- * @version 0.1.1
+ * @version 0.1.2
  */
 /*
 Plugin Name: TA YourIP
 Plugin URI: https://github.com/Byggvir/tawp_yourip/archive/master.zip
 Description: This plugin displays the IP address of the caller.
 Author: Thomas Arend
-Version: 0.1.1
+Version: 0.1.2
 Author URI: http://byggvir.de/
 */
 
@@ -49,6 +49,25 @@ function yourip($atts) {
      
 }
 
+function yourhost($atts) {
+
+    extract(
+        shortcode_atts(
+            array(
+                'client' => 'yes',
+                'remote' => 'yes',
+                'forward' => 'yes',
+            ),
+            $atts
+        )
+    );
+
+	$host = "<div class=\"tawp_yourhost\">Hostname: $_SERVER['REMOTE_HOST']</div>";
+
+	return $host;
+     
+}
+
 function add_uip_stylesheet( )
  {
   wp_register_style( UIP . 'StyleSheets', plugins_url( 'css/styles.css', __FILE__ ) );
@@ -62,4 +81,6 @@ add_action( 'wp_print_styles', 'add_uip_stylesheet' );
 // Add the shortcode
 
 add_shortcode('yourip', 'yourip');
+add_shortcode('yourhost', 'yourhost');
+
 ?>
