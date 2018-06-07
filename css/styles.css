@@ -3,18 +3,27 @@
 Styles for Plugin TAWP Your IP 
 
 Author: Thomas Arend
-Date: 03.06.2018
-Version 0.1.2
+Date: 07.06.2018
+Version 0.1.3
 */
 
 .tawp_yourip {
   color: blue ;
   font-weight: bold;
+  border : 1px solid blue;
+  margin : 1em;
+  padding : 1em;
 }
 
 .tawp_yourhost {
   color: blue ;
   font-weight: bold;
+  
 }
 
+.tawp_youragent {
+  color: blue ;
+  font-weight: bold;
+  
+}
 
