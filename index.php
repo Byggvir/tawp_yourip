@@ -80,7 +80,7 @@ add_action( 'wp_print_styles', TAYIP.'add_stylesheet' );
 
 // Add the shortcode
 
-add_shortcode('yourip', 'yourip');
-add_shortcode('yourhost', 'yourhost');
-add_shortcode('youragent', 'youragent');
+add_shortcode('yourip', TAYIP.'yourip');
+add_shortcode('yourhost', TAYIP.'yourhost');
+add_shortcode('youragent', TAYIP.'youragent');
 ?>
